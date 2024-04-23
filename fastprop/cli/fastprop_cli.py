@@ -98,14 +98,12 @@ def main():
             exit(0)
         optim_requested = args.pop("optimize")
         if args["config_file"] is not None:
-            if sum(map(lambda i: i is not None, args.values())) > 1:
-                raise parser.error("Cannot specify config_file with other command line arguments (except --optimize).")
             with open(args["config_file"], "r") as f:
                 cfg = yaml.safe_load(f)
                 cfg["target_columns"] = cfg["target_columns"].split(" ")
                 training_default.update(cfg)
-        else:
-            training_default.update({k: v for k, v in args.items() if v is not None})
+
+        training_default.update({k: v for k, v in args.items() if v is not None})
 
         optim_requested = training_default.pop("optimize") or optim_requested
         logger.info(f"Training Parameters:\n{yaml.dump(training_default, sort_keys=False)}")

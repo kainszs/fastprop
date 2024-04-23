@@ -40,6 +40,7 @@ def train_fastprop(
     sampler="random",
     random_seed=0,
     patience=5,
+    **kwargs,
 ):
     """Driver function for automatic training.
 
@@ -50,8 +51,8 @@ def train_fastprop(
     # make output directories
     if not os.path.exists(output_directory):
         os.mkdir(output_directory)
-    output_subdirectory = os.path.join(output_directory, f"fastprop_{int(datetime.datetime.utcnow().timestamp())}")
-    os.mkdir(output_subdirectory)
+    output_subdirectory = output_directory
+    #os.mkdir(output_subdirectory)
     os.mkdir(os.path.join(output_subdirectory, "checkpoints"))
     _init_loggers(output_subdirectory)
     logging.getLogger("pytorch_lightning").setLevel(logging.INFO)
