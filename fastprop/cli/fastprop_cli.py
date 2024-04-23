@@ -63,7 +63,7 @@ def main():
     input_group = predict_subparser.add_mutually_exclusive_group()
     input_group.add_argument("-s", "--smiles", nargs="+", help="SMILES string for prediction")
     input_group.add_argument("-i", "--input-file", help="file containing SMILES strings")
-    predict_subparser.add_argument("-o", "--output", required=False, help="output file for predictions (defaults to stdout)")
+    predict_subparser.add_argument("-o", "--output", type=str, help="output file for predictions (defaults to stdout)")
 
     shap_subparser = subparsers.add_parser("shap")
     shap_subparser.add_argument("checkpoints_dir", help="directory of checkpoint file(s) for SHAP analysis")
