@@ -78,7 +78,7 @@ def predict_fastprop(checkpoints_dir, smiles, input_file, output:str=None):
     result = pd.DataFrame(
         {
             "smiles": smiles,
-            "predictions": prediction.flatten(),
+            "logS": prediction.flatten(),
         }
     )
 
